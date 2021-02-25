@@ -6,7 +6,8 @@ namespace bullsCows
     {
         static void Main(string[] args)
         {
-            Menu.gameMenu();
+            Menu gameMenu = new Menu();
+            gameMenu.gameMenu();
         }
     }
 }

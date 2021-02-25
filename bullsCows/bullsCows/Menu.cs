@@ -5,14 +5,20 @@ namespace bullsCows
 {
     class Menu
     {
-        private static int index = 0;
-        private static List<string> menuItem = new List<string>
+        private int index;
+        private List<string> menuItem;
+        public Menu()
         {
-            "Start Game",
-            "Game Rules",
-            "Exit"
-        };
-        private static string buildMenu(List<string> menuItem)
+            index = 0;
+            menuItem = new List<string>
+            {
+                "Start Game",
+                "Game Rules",
+                "Exit"
+            };
+
+        }
+        private string buildMenu(List<string> menuItem)
         {
             Console.CursorVisible = false;
             for (int i = 0; i < menuItem.Count; i++)
@@ -41,7 +47,7 @@ namespace bullsCows
             }
             return "";
         }
-        public static void gameMenu()
+        public void gameMenu()
         {
             while (true)
             {
@@ -64,7 +70,8 @@ namespace bullsCows
                 else if (selectedMenu == "Start Game")
                 {
                     Console.Clear();
-                    Game.newGame();
+                    Game myGame = new Game();
+                    myGame.newGame();
                     Console.WriteLine("Press something to continue...");
                     Console.ReadKey();
                     Console.Clear();

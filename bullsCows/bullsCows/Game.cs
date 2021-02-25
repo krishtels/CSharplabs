@@ -6,13 +6,21 @@ namespace bullsCows
 {
     class Game
     {
-        private static List<int> allVariants = new List<int>();
-        private static List<int> candidates = new List<int>();
-        private static bool[] possibleCombinations = new bool[10001];
-        private static (int, int)[,] bullsCows = new (int, int)[10001, 10001]; //первый бык, второй корова
-        private static (int, int) answer;
-        private static int query = 1234;
-        private static void buildAllVariants()//все возможные варианты загаданного числа (5040 чисел)
+        private List<int> allVariants = new List<int>();
+        private List<int> candidates = new List<int>();
+        private bool[] possibleCombinations;
+        private (int, int)[,] bullsCows; //первый бык, второй корова
+        private (int, int) answer;
+        private int query;
+        public Game()
+        {
+            query = 1234;
+            bullsCows = new (int, int)[10001, 10001];
+            possibleCombinations = new bool[10001];
+            buildAllVariants();
+            buildBullsCows();
+        }
+        private void buildAllVariants()//все возможные варианты загаданного числа (5040 чисел)
         {
             for (int i = 100; i < 9999; i++)
             {
@@ -44,7 +52,7 @@ namespace bullsCows
             }
             candidates = allVariants;
         }
-        private static void buildBullsCows() //количество быков и коров у каждой пары возможных комбинаций
+        private void buildBullsCows() //количество быков и коров у каждой пары возможных комбинаций
         {
             for (int i = 0; i < allVariants.Count(); i++)//номер каждой цифры числа справа налево начиная с 1
             {
@@ -76,7 +84,7 @@ namespace bullsCows
                 }
             }
         }
-        private static void process()
+        private void process()
         {
             List<int> newCandidates = new List<int>();
             for (int i = 0; i < candidates.Count(); i++)//убираем из кандидатов все, что не подходит под данный запрос введенный пользователем
@@ -110,7 +118,7 @@ namespace bullsCows
                 }
             }
         }
-        private static void input()//обработка пользовательского ввода быков и коров
+        private void input()//обработка пользовательского ввода быков и коров
         {
             bool falseInput = true;
             int bulls = 0, cows = 0;
@@ -132,13 +140,11 @@ namespace bullsCows
             answer.Item1 = bulls;
             answer.Item2 = cows;
         }
-        public static void newGame()
+        public void newGame()
         {
             string output = query.ToString();
             Console.CursorVisible = true;
             Console.WriteLine("Wish your number");
-            buildAllVariants();
-            buildBullsCows();
             Console.WriteLine("Your number is " + query + "?");
             input();
             while (answer.Item1 != 4 && candidates.Count > 0)
@@ -164,17 +170,6 @@ namespace bullsCows
             {
                 Console.WriteLine("You've made mistake during the game. Please check everything and try again");
             }
-            allVariants.Clear();
-            candidates.Clear();
-            for (int i = 0; i < 10001; i++)
-            {
-                for (int j = 0; j < 10001; j++)
-                {
-                    bullsCows[i, j] = (0, 0);
-                }
-                possibleCombinations[i] = true;
-            }
-            query = 1234;
         }
     }
 }
