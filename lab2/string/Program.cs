@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace myString
+namespace MyString
 {
     class Program
     {
