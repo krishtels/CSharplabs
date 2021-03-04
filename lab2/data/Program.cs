@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace data
+namespace Data
 {
     class Data
     {
