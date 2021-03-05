@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 
 namespace Data
 {
@@ -24,7 +23,7 @@ namespace Data
         public void PrintDataFormats()
         {
             Console.WriteLine(now.ToString("dd.MM.yyyy HH:mm:ss"));
-            Console.WriteLine(now.ToString("ddd dd MMM yyyy hh:mm:ss tt", CultureInfo.InvariantCulture));
+            Console.WriteLine(now.ToString("ddd d MMMM yyyy hh:mm:ss"));
         }
         public void PrintAmountOfNumbers()
         {
